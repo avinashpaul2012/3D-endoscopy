@@ -44,13 +44,13 @@ def run(input_path, output_path, model_path):
 
         img_input = utils.resize_image(img)
         img_input = img_input.to(device)
-        print(img_input.shape)
+
         # compute
         with torch.no_grad():
             out = model.forward(img_input)
-            print(out.shape)
+
         depth = utils.resize_depth(out, img.shape[1], img.shape[0])
-        print(depth.shape)
+
         # output
         filename = os.path.join(
             output_path, os.path.splitext(os.path.basename(img_name))[0]
